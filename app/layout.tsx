@@ -3,7 +3,7 @@ import { Analytics } from "@vercel/analytics/react";
 import Head from 'next/head';
 
 export const metadata = {
-  title: "Calendrier de Jade - Rhode Island",
+  title: "Calendrier de Jade - Dodge City",
   description: "Le calendrier des matchs de Jade.",
    manifest: "/manifest.json",
   appleWebApp: {
@@ -15,7 +15,7 @@ export const metadata = {
     apple: "/apple-touch-icon.png",
   },
   openGraph: {
-    title: "Calendrier de Jade - Rhode Island",
+    title: "Calendrier de Jade - Dodge City",
     description: "Le calendrier des matchs de Jade.",
     url: "https://jade-calendrier.vercel.app/",
     siteName: "Jade Celerier Schedule",
@@ -24,14 +24,14 @@ export const metadata = {
         url: "https://jade-calendrier.vercel.app/preview.jpg",
         width: 1200,
         height: 630,
-        alt: "Calendrier de Jade - Rhode Island",
+        alt: "Calendrier de Jade - Dodge City",
       },
     ],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Calendrier de Jade - Rhode Island",
+    title: "Calendrier de Jade - Dodge City",
     description: "Le calendrier des matchs de Jade.",
     images: ["https://jade-calendrier.vercel.app/preview.jpg"],
   },
