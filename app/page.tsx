@@ -265,8 +265,8 @@ export default function PhoenixSchedulePage() {
                     <div className="flex flex-col items-center ml-4">
                       <div className="flex items-center gap-2 mb-1">
                         <img
-                          src={`https://flagcdn.com/w40/${isLocal ? locale.split('-')[1]?.toLowerCase() || 'fr' : 'fr'}.png`}
-                          alt="Flag"
+                       src={`https://flagcdn.com/w40/${isLocal ? userCountryCode : 'fr'}.png`}
+  alt="Flag"
                           className="w-6 h-4 rounded"
                         />
                       </div>
