@@ -172,13 +172,13 @@ export default function PhoenixSchedulePage() {
       <div className="text-center mb-8">
         <div className="inline-flex items-center gap-3 bg-white/80 backdrop-blur-sm rounded-2xl px-6 py-4 shadow-lg border border-blue-200">
           <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-blue-400 rounded-full flex items-center justify-center">
-            <span className="text-white font-bold text-lg">RI</span>
+            <span className="text-white font-bold text-lg">DC</span>
           </div>
           <div>
             <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-700 to-blue-500 bg-clip-text text-transparent">
               SAISON 2025-2026
             </h1>
-            <p className="text-blue-600 text-sm font-medium">Rhode Island Basketball</p>
+            <p className="text-blue-600 text-sm font-medium">Dodge City Community</p>
           </div>
         </div>
       </div>
