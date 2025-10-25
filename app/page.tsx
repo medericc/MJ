@@ -88,42 +88,31 @@ const parsed = rawMatches.map((match, index) => {
 export default function PhoenixSchedulePage() {
   const [matches, setMatches] = useState<Match[]>([]);
   const [loading, setLoading] = useState(true);
-  const [showLocalTimes, setShowLocalTimes] = useState<{ [key: string]: boolean }>({});
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showGoogleInstructions, setShowGoogleInstructions] = useState(false);
   const [showiOSInstructions, setShowiOSInstructions] = useState(false);
   const [userZone, setUserZone] = useState("Europe/Paris");
   const [userCountryCode, setUserCountryCode] = useState("fr");
+const [showLocalTimes, setShowLocalTimes] = useState<{ [key: string]: boolean }>(() => {
+  const initial: { [key: string]: boolean } = {};
+  // Par défaut, on affiche les heures en local (pas en France)
+  parsed.forEach(match => {
+    initial[match.id] = true;
+  });
+  return initial;
+});
 
-useEffect(() => {
-  const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-  setUserZone(tz);
+ useEffect(() => {
+    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    setUserZone(tz);
 
-  // Détection par IP (plus fiable que le fuseau)
-  fetch('https://ipapi.co/json/')
-    .then(res => res.json())
-    .then(data => {
-      if (data && data.country_code) {
-        setUserCountryCode(data.country_code.toLowerCase());
-      } else {
-        // fallback sur fuseau si API échoue
-        let country = "fr";
-        if (tz.startsWith("America")) country = "us";
-        else if (tz.startsWith("Europe/")) country = "fr";
-        else if (tz.startsWith("Asia")) country = "jp";
-        setUserCountryCode(country);
-      }
-    })
-    .catch(() => {
-      // fallback sur fuseau en cas d’erreur réseau
-      let country = "fr";
-      if (tz.startsWith("America")) country = "us";
-      else if (tz.startsWith("Europe/")) country = "fr";
-      else if (tz.startsWith("Asia")) country = "jp";
-      setUserCountryCode(country);
-    });
-}, []);
-
+    // petite détection du pays via le fuseau horaire
+    let country = "fr";
+    if (tz.startsWith("America")) country = "us";
+    else if (tz.startsWith("Europe/")) country = "fr";
+    else if (tz.startsWith("Asia")) country = "jp";
+    setUserCountryCode(country);
+  }, []); 
  useEffect(() => {
     const now = new Date();
     const nowMinus5h = new Date(now.getTime() - 5 * 60 * 60 * 1000);
@@ -231,8 +220,8 @@ useEffect(() => {
     ">
         {matches.map((match) => {
           const isLocal = showLocalTimes[match.id];
-          const timeZone = isLocal ? Intl.DateTimeFormat().resolvedOptions().timeZone : 'Europe/Paris';
-          const locale = "fr-FR";
+        const timeZone = userZone;
+  const locale = "fr-FR";
           const use12HourFormat = ['en-US', 'en-GB'].includes(locale);
 
           const dayLabel = new Date(match.date).toLocaleDateString(locale, {
@@ -283,7 +272,7 @@ useEffect(() => {
                     <div className="flex flex-col items-center ml-4">
                       <div className="flex items-center gap-2 mb-1">
                         <img
-                       src={`https://flagcdn.com/w40/${isLocal ? userCountryCode : 'fr'}.png`}
+src={`https://flagcdn.com/w40/${userCountryCode}.png`}
   alt="Flag"
                           className="w-6 h-4 rounded"
                         />
