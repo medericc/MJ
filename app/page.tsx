@@ -148,7 +148,7 @@ const [showLocalTimes, setShowLocalTimes] = useState<{ [key: string]: boolean }>
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = 'Inès_2526.ics';
+      a.download = 'jade_2526.ics';
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
