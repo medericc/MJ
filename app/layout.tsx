@@ -7,7 +7,7 @@ export const metadata = {
   description: "Le calendrier des matchs de Jade.",
    manifest: "/manifest.json",
   appleWebApp: {
-    title: "Inès Schedule",
+    title: "Jade Schedule",
   },
   icons: {
     icon: "/favicon.ico",
