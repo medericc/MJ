@@ -95,17 +95,35 @@ export default function PhoenixSchedulePage() {
   const [userZone, setUserZone] = useState("Europe/Paris");
   const [userCountryCode, setUserCountryCode] = useState("fr");
 
- useEffect(() => {
-    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    setUserZone(tz);
+useEffect(() => {
+  const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  setUserZone(tz);
 
-    // petite détection du pays via le fuseau horaire
-    let country = "fr";
-    if (tz.startsWith("America")) country = "us";
-    else if (tz.startsWith("Europe/")) country = "fr";
-    else if (tz.startsWith("Asia")) country = "jp";
-    setUserCountryCode(country);
-  }, []); 
+  // Détection par IP (plus fiable que le fuseau)
+  fetch('https://ipapi.co/json/')
+    .then(res => res.json())
+    .then(data => {
+      if (data && data.country_code) {
+        setUserCountryCode(data.country_code.toLowerCase());
+      } else {
+        // fallback sur fuseau si API échoue
+        let country = "fr";
+        if (tz.startsWith("America")) country = "us";
+        else if (tz.startsWith("Europe/")) country = "fr";
+        else if (tz.startsWith("Asia")) country = "jp";
+        setUserCountryCode(country);
+      }
+    })
+    .catch(() => {
+      // fallback sur fuseau en cas d’erreur réseau
+      let country = "fr";
+      if (tz.startsWith("America")) country = "us";
+      else if (tz.startsWith("Europe/")) country = "fr";
+      else if (tz.startsWith("Asia")) country = "jp";
+      setUserCountryCode(country);
+    });
+}, []);
+
  useEffect(() => {
     const now = new Date();
     const nowMinus5h = new Date(now.getTime() - 5 * 60 * 60 * 1000);
