@@ -95,12 +95,14 @@ export default function PhoenixSchedulePage() {
   const [userCountryCode, setUserCountryCode] = useState("fr");
 const [showLocalTimes, setShowLocalTimes] = useState<{ [key: string]: boolean }>(() => {
   const initial: { [key: string]: boolean } = {};
+  
   // Par défaut, on affiche les heures en local (pas en France)
   parsed.forEach(match => {
     initial[match.id] = true;
   });
   return initial;
 });
+const [isNoLinkModalOpen, setIsNoLinkModalOpen] = useState(false);
 
  useEffect(() => {
     const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -294,17 +296,29 @@ src={`https://flagcdn.com/w40/${userCountryCode}.png`}
                   </div>
                 </CardContent>
 
-                <CardFooter className="bg-gradient-to-r from-purple-800 to-purple-800 p-0">
-                  <a
-                    href={match.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full text-center py-3 text-white font-bold text-lg hover:bg-purple-800/90 transition-colors flex items-center justify-center gap-2"
-                  >
-                    <ExternalLink className="w-5 h-5" />
-                    REGARDER LE MATCH
-                  </a>
-                </CardFooter>
+              <CardFooter className="bg-gradient-to-r from-purple-800 to-purple-800 p-0">
+  {match.link && !match.link.includes("youtube.com") ? (
+  <a
+    href={match.link}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="w-full text-center py-3 text-white font-bold text-lg hover:bg-purple-800/90 transition-colors flex items-center justify-center gap-2"
+  >
+    <ExternalLink className="w-5 h-5" />
+    REGARDER LE MATCH
+  </a>
+) : (
+  <button
+    onClick={() => setIsNoLinkModalOpen(true)}
+    className="w-full text-center py-3 text-white font-bold text-lg hover:bg-purple-800/90 transition-colors flex items-center justify-center gap-2"
+  >
+    <ExternalLink className="w-5 h-5" />
+    REGARDER LE MATCH
+  </button>
+)}
+
+</CardFooter>
+
               </Card>
             </div>
           );
@@ -388,6 +402,28 @@ src={`https://flagcdn.com/w40/${userCountryCode}.png`}
           </DialogPanel>
         </div>
       </Dialog>
+
+      {/* Modal "Pas de lien" */}
+<Dialog open={isNoLinkModalOpen} onClose={() => setIsNoLinkModalOpen(false)} className="relative z-50">
+  <div className="fixed inset-0 bg-black/60 backdrop-blur-sm" aria-hidden="true" />
+  <div className="fixed inset-0 flex items-center justify-center p-4">
+    <DialogPanel className="bg-white rounded-3xl p-6 max-w-sm mx-auto shadow-2xl border border-purple-200 text-center">
+      <DialogTitle className="text-xl font-bold text-purple-900 mb-4">
+        Jade s’échauffe en dehors des projecteurs ✨
+      </DialogTitle>
+      <p className="text-purple-700 text-sm mb-4">
+        Le lien du match n’est pas encore disponible, mais reste connecté, ça arrive bientôt !
+      </p>
+      <button
+        onClick={() => setIsNoLinkModalOpen(false)}
+        className="mt-2 bg-purple-800 hover:bg-purple-700 text-white font-medium px-4 py-2 rounded-xl transition-colors"
+      >
+        Fermer
+      </button>
+    </DialogPanel>
+  </div>
+</Dialog>
+
     </div>
   );
 }
