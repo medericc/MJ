@@ -56,7 +56,7 @@ const parsed = rawMatches.map((match, index) => {
     [hour, minute] = hourString.split(/[:hH]/).map(Number);
   }
 
-  // ✅ Étape clé : création en heure "America/Chicago" (CT)
+  // Création du datetime en Central Time
   const dtCT = DateTime.fromObject(
     {
       year: Number(year),
@@ -65,17 +65,17 @@ const parsed = rawMatches.map((match, index) => {
       hour: isNaN(hour) ? 0 : hour,
       minute: isNaN(minute) ? 0 : minute,
     },
-    { zone: "America/Chicago" } // Dodge City = Central Time
+    { zone: "America/Chicago" }
   );
 
-  // ✅ Convertir directement en Europe/Paris
-  const dtParis = dtCT.setZone(Intl.DateTimeFormat().resolvedOptions().timeZone);
+  // Conversion en Europe/Paris (heure française par défaut)
+  const dtParis = dtCT.setZone("Europe/Paris");
 
   return {
     id: `${index}-${match["match.opponent"]}`,
-    date: dtParis.toJSDate(), // conversion en Date pour le reste du code
+    date: dtParis.toJSDate(),
     opponent: match["match.opponent"],
-    opponentLogo: match["match.opponentLogo"],
+    opponentLogo: `${match["match.opponentLogo"]}`,
     link: match["match.link"]?.startsWith('http')
       ? match["match.link"]
       : match["match.link"]?.trim()
