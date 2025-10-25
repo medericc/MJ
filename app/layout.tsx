@@ -49,8 +49,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="theme-color" content="#1e40af" />
       </Head>
 
-      <body className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900 dark:to-blue-800 text-gray-900 dark:text-white">
-        <header className="bg-gradient-to-r from-blue-700 via-blue-600 to-blue-500 text-white p-6 text-3xl sm:text-3xl font-bold text-center shadow-lg tracking-wide">
+      <body className="min-h-screen bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900 dark:to-purple-800 text-gray-900 dark:text-white">
+        <header className="bg-gradient-to-r from-purple-800 via-purple-700 to-purple-600 text-white p-6 md:p-8 text-3xl sm:text-3xl font-bold text-center shadow-lg tracking-wide">
           
           {/* Mobile */}
           <span className="sm:hidden">🏀 JADE SCHEDULE</span>

@@ -48,7 +48,7 @@ const translations = {
 
 const parsed = rawMatches.map((match, index) => {
   const [month, day, year] = match.dayLabel.split('/');
-  const hourString = match.hourLabel || match["match.link"];
+  const hourString = match.hourLabel;
   let hour = NaN;
   let minute = NaN;
 
@@ -56,19 +56,26 @@ const parsed = rawMatches.map((match, index) => {
     [hour, minute] = hourString.split(/[:hH]/).map(Number);
   }
 
-  const date = new Date(
-    Number(year),
-    Number(month) - 1,
-    Number(day),
-    isNaN(hour) ? 0 : hour,
-    isNaN(minute) ? 0 : minute
+  // ✅ Étape clé : création en heure "America/Chicago" (CT)
+  const dtCT = DateTime.fromObject(
+    {
+      year: Number(year),
+      month: Number(month),
+      day: Number(day),
+      hour: isNaN(hour) ? 0 : hour,
+      minute: isNaN(minute) ? 0 : minute,
+    },
+    { zone: "America/Chicago" } // Dodge City = Central Time
   );
+
+  // ✅ Convertir directement en Europe/Paris
+  const dtParis = dtCT.setZone(Intl.DateTimeFormat().resolvedOptions().timeZone);
 
   return {
     id: `${index}-${match["match.opponent"]}`,
-    date,
+    date: dtParis.toJSDate(), // conversion en Date pour le reste du code
     opponent: match["match.opponent"],
-    opponentLogo: `${match["match.opponentLogo"]}`,
+    opponentLogo: match["match.opponentLogo"],
     link: match["match.link"]?.startsWith('http')
       ? match["match.link"]
       : match["match.link"]?.trim()
@@ -169,16 +176,16 @@ export default function PhoenixSchedulePage() {
   return (
     <div className="mx-auto pb-20">
       {/* En-tête stylisé */}
-      <div className="text-center mb-8">
-        <div className="inline-flex items-center gap-3 bg-white/80 backdrop-blur-sm rounded-2xl px-6 py-4 shadow-lg border border-blue-200">
-          <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-blue-400 rounded-full flex items-center justify-center">
+      <div className="text-center mb-6">
+        <div className="inline-flex items-center gap-3 bg-white/80 backdrop-blur-sm rounded-2xl px-6 py-4 shadow-lg border border-purple-700">
+          <div className="w-12 h-12 bg-gradient-to-r from-purple-800 to-purple-700 rounded-full flex items-center justify-center">
             <span className="text-white font-bold text-lg">DC</span>
           </div>
-          <div>
-            <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-700 to-blue-500 bg-clip-text text-transparent">
+          <div >
+            <h1 className="text-2xl font-bold bg-gradient-to-r from-purple-800 to-purple-700 bg-clip-text text-transparent">
               SAISON 2025-2026
             </h1>
-            <p className="text-blue-600 text-sm font-medium">Dodge City Community</p>
+            <p className="text-purple-800 text-sm font-medium">Dodge City Community</p>
           </div>
         </div>
       </div>
@@ -215,8 +222,8 @@ export default function PhoenixSchedulePage() {
 
           return (
             <div key={match.id} className="group">
-              <Card className="bg-white/90 backdrop-blur-sm border-2 border-blue-200/50 shadow-xl hover:shadow-2xl transition-all duration-300 rounded-2xl overflow-hidden hover:border-blue-300">
-                <CardHeader className="bg-gradient-to-r from-blue-600 to-blue-500 text-white p-4 text-center">
+              <Card className="bg-white/90 backdrop-blur-sm border-2 border-purple-200/50 shadow-xl hover:shadow-2xl transition-all duration-300 rounded-2xl overflow-hidden hover:border-purple-300">
+                <CardHeader className="bg-gradient-to-r from-purple-800 to-purple-700 text-white p-4 text-center">
                   <p className="text-lg font-bold tracking-wider drop-shadow-sm">
                     {dayLabel}
                   </p>
@@ -226,7 +233,7 @@ export default function PhoenixSchedulePage() {
                   <div className="flex items-center justify-between">
                     {/* Équipe adverse */}
                     <div className="flex items-center gap-2 flex-1">
-                      <div className="w-16 h-16 bg-white rounded-xl shadow-md border border-blue-100 flex items-center justify-center p-2">
+                      <div className="w-16 h-16 bg-white rounded-xl shadow-md border border-purple-100 flex items-center justify-center p-2">
                         <img
                           src={match.opponentLogo}
                           alt={match.opponent}
@@ -234,7 +241,7 @@ export default function PhoenixSchedulePage() {
                         />
                       </div>
                       <div className="flex-1">
-                        <p className="text-lg font-semibold text-blue-900 leading-tight">
+                        <p className="text-lg font-semibold text-purple-900 leading-tight">
                           {match.opponent}
                         </p>
                       </div>
@@ -250,15 +257,15 @@ export default function PhoenixSchedulePage() {
                         />
                       </div>
                       <div
-                        className="flex items-center gap-2 bg-blue-50 px-3 py-2 rounded-lg cursor-pointer hover:bg-blue-100 transition-colors border border-blue-200"
+                        className="flex items-center gap-2 bg-purple-50 px-3 py-2 rounded-lg cursor-pointer hover:bg-purple-100 transition-colors border border-purple-200"
                         onClick={() => setShowLocalTimes(prev => ({
                           ...prev,
                           [match.id]: !prev[match.id],
                         }))}
                         title="Cliquez pour changer le fuseau horaire"
                       >
-                        <Clock className="w-4 h-4 text-blue-600" />
-                        <span className="font-bold text-blue-800 text-sm">
+                        <Clock className="w-4 h-4 text-purple-800" />
+                        <span className="font-bold text-purple-800 text-sm">
                           {hourLabel}
                         </span>
                       </div>
@@ -266,12 +273,12 @@ export default function PhoenixSchedulePage() {
                   </div>
                 </CardContent>
 
-                <CardFooter className="bg-gradient-to-r from-blue-700 to-blue-600 p-0">
+                <CardFooter className="bg-gradient-to-r from-purple-800 to-purple-800 p-0">
                   <a
                     href={match.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full text-center py-3 text-white font-bold text-lg hover:bg-blue-700/90 transition-colors flex items-center justify-center gap-2"
+                    className="w-full text-center py-3 text-white font-bold text-lg hover:bg-purple-800/90 transition-colors flex items-center justify-center gap-2"
                   >
                     <ExternalLink className="w-5 h-5" />
                     REGARDER LE MATCH
@@ -286,7 +293,7 @@ export default function PhoenixSchedulePage() {
       {/* Bouton flottant */}
       <button
         onClick={() => setIsModalOpen(true)}
-        className="fixed bottom-6 right-6 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white rounded-full p-4 shadow-2xl z-50 transition-all duration-300 hover:scale-110"
+        className="fixed bottom-6 right-6 bg-gradient-to-r from-purple-800 to-purple-700 hover:from-purple-800 hover:to-purple-800 text-white rounded-full p-4 shadow-2xl z-50 transition-all duration-300 hover:scale-110"
         title="Ajouter au calendrier"
       >
         <CalendarPlus className="w-6 h-6" />
@@ -296,8 +303,8 @@ export default function PhoenixSchedulePage() {
       <Dialog open={isModalOpen} onClose={() => setIsModalOpen(false)} className="relative z-50">
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm" aria-hidden="true" />
         <div className="fixed inset-0 flex items-center justify-center p-4">
-          <DialogPanel className="bg-white rounded-2xl p-6 max-w-sm mx-auto shadow-2xl border border-blue-200">
-            <DialogTitle className="text-xl font-bold text-blue-900 mb-4 text-center">
+          <DialogPanel className="bg-white rounded-2xl p-6 max-w-sm mx-auto shadow-2xl border border-purple-200">
+            <DialogTitle className="text-xl font-bold text-purple-900 mb-4 text-center">
               {t.addCalendarTitle}
             </DialogTitle>
 
@@ -305,19 +312,19 @@ export default function PhoenixSchedulePage() {
               <div className="flex flex-col gap-3">
                 <button
                   onClick={handleAppleOutlookImport}
-                  className="bg-blue-50 hover:bg-blue-100 text-blue-800 px-4 py-3 rounded-xl text-sm font-medium transition-colors border border-blue-200"
+                  className="bg-purple-50 hover:bg-purple-100 text-purple-800 px-4 py-3 rounded-xl text-sm font-medium transition-colors border border-purple-200"
                 >
                   {t.appleOutlook}
                 </button>
                 <button
                   onClick={handleGoogleCalendarImport}
-                  className="bg-blue-50 hover:bg-blue-100 text-blue-800 px-4 py-3 rounded-xl text-sm font-medium transition-colors border border-blue-200"
+                  className="bg-purple-50 hover:bg-purple-100 text-purple-800 px-4 py-3 rounded-xl text-sm font-medium transition-colors border border-purple-200"
                 >
                   {t.googleCalendar}
                 </button>
                 <button
                   onClick={() => setIsModalOpen(false)}
-                  className="text-sm text-blue-600 hover:text-blue-800 mt-2 font-medium"
+                  className="text-sm text-purple-800 hover:text-purple-800 mt-2 font-medium"
                 >
                   {t.cancel}
                 </button>
@@ -325,7 +332,7 @@ export default function PhoenixSchedulePage() {
             ) : showGoogleInstructions ? (
               <div className="space-y-3 text-center">
                 {t.googleInstructions.map((instruction, index) => (
-                  <p key={index} className={index === 0 ? "text-green-600 font-semibold" : "text-blue-800 text-sm"}>
+                  <p key={index} className={index === 0 ? "text-green-800 font-semibold" : "text-purple-800 text-sm"}>
                     {instruction}
                   </p>
                 ))}
@@ -334,7 +341,7 @@ export default function PhoenixSchedulePage() {
                     setIsModalOpen(false);
                     setShowGoogleInstructions(false);
                   }}
-                  className="mt-4 text-sm text-blue-700 font-semibold hover:text-blue-900"
+                  className="mt-4 text-sm text-purple-800 font-semibold hover:text-purple-900"
                 >
                   {t.close}
                 </button>
@@ -342,7 +349,7 @@ export default function PhoenixSchedulePage() {
             ) : (
               <div className="space-y-3 text-center">
                 {t.iosInstructions.map((instruction, index) => (
-                  <p key={index} className={index === 0 ? "text-green-600 font-semibold" : "text-blue-800 text-sm"}>
+                  <p key={index} className={index === 0 ? "text-green-800 font-semibold" : "text-purple-800 text-sm"}>
                     {instruction}
                   </p>
                 ))}
@@ -351,7 +358,7 @@ export default function PhoenixSchedulePage() {
                     setIsModalOpen(false);
                     setShowiOSInstructions(false);
                   }}
-                  className="mt-4 text-sm text-blue-700 font-semibold hover:text-blue-900"
+                  className="mt-4 text-sm text-purple-800 font-semibold hover:text-purple-900"
                 >
                   {t.close}
                 </button>
