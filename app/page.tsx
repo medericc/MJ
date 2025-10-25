@@ -29,18 +29,18 @@ const translations = {
       "1. Ouvrez Google Calendar",
       "2. Cliquez sur la roue crantée en haut à droite → Paramètres",
       "3. Allez dans Importer et exporter",
-      "4. Sélectionnez le fichier téléchargé : ines_2526.ics",
+      "4. Sélectionnez le fichier téléchargé : jade_2526.ics",
       "5. Importez-le dans le calendrier de votre choix",
-      "🎉 Tous les matchs de Inès sont maintenant dans votre agenda !",
+      "🎉 Tous les matchs de Jade sont maintenant dans votre agenda !",
     ],
     iosInstructions: [
       "✅ Le fichier a été téléchargé !",
       "Si pas déjà importer :",
       "1. Ouvrez l'application Fichiers",
       "2. Rendez-vous dans le dossier Téléchargements",
-      "3. Appuyez sur le fichier ines_2526.ics",
+      "3. Appuyez sur le fichier jade_2526.ics",
       "4. Choisissez Ajouter à Calendrier si proposé",
-      "📅 Tous les matchs de Inès sont maintenant ajoutés à votre calendrier !",
+      "📅 Tous les matchs de Jade sont maintenant ajoutés à votre calendrier !",
     ],
     close: "Fermer",
   }
@@ -92,8 +92,21 @@ export default function PhoenixSchedulePage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showGoogleInstructions, setShowGoogleInstructions] = useState(false);
   const [showiOSInstructions, setShowiOSInstructions] = useState(false);
+  const [userZone, setUserZone] = useState("Europe/Paris");
+  const [userCountryCode, setUserCountryCode] = useState("fr");
 
-  useEffect(() => {
+ useEffect(() => {
+    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    setUserZone(tz);
+
+    // petite détection du pays via le fuseau horaire
+    let country = "fr";
+    if (tz.startsWith("America")) country = "us";
+    else if (tz.startsWith("Europe/")) country = "fr";
+    else if (tz.startsWith("Asia")) country = "jp";
+    setUserCountryCode(country);
+  }, []); 
+ useEffect(() => {
     const now = new Date();
     const nowMinus5h = new Date(now.getTime() - 5 * 60 * 60 * 1000);
 
@@ -172,7 +185,7 @@ export default function PhoenixSchedulePage() {
   }
 
   const t = translations.fr;
-
+  
   return (
     <div className="mx-auto pb-20">
       {/* En-tête stylisé */}
@@ -219,6 +232,7 @@ export default function PhoenixSchedulePage() {
                 timeZone,
               })
             : "?????";
+ const flagCode = isLocal ? userCountryCode : "fr";
 
           return (
             <div key={match.id} className="group">
