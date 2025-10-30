@@ -4,21 +4,21 @@ export const matches = [
     "dayLabel": "10/31/2025",
     "hourLabel": "18:00",
     "match.opponentLogo": "/4.webp",
-    "match.link": ""
+    "match.link": "https://www.youtube.com/watch?v=AY4aic-LFnQ"
   },
   {
     "match.opponent": "Colorado NW",
     "dayLabel": "11/1/2025",
     "hourLabel": "12:00",
     "match.opponentLogo": "/5.webp",
-    "match.link": ""
+    "match.link": "https://www.youtube.com/watch?v=0uIeG52S1Ws"
   },
   {
     "match.opponent": "North Platte",
     "dayLabel": "11/12/2025",
     "hourLabel": "",
     "match.opponentLogo": "/6.webp",
-    "match.link": ""
+    "match.link": "https://goconqs.com/sports/2018/8/17/live-video.aspx"
   },
   {
     "match.opponent": "Trinidad",
