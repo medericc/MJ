@@ -124,7 +124,7 @@ const [isNoLinkModalOpen, setIsNoLinkModalOpen] = useState(false);
       .map(match => ({
         ...match,
         opponent: match.opponent,
-        link: match.link?.startsWith('http') ? match.link : `https://${match.link || 'youtube.com'}`,
+        link: match.link?.startsWith('http') ? match.link : `https://${match.link || 'aa.aa'}`,
       }));
 
     setMatches(filtered);
@@ -297,7 +297,7 @@ src={`https://flagcdn.com/w40/${userCountryCode}.png`}
                 </CardContent>
 
               <CardFooter className="bg-gradient-to-r from-purple-800 to-purple-800 p-0">
-  {match.link && !match.link.includes("youtube.com") ? (
+  {match.link && !match.link.includes("aa.aa") ? (
   <a
     href={match.link}
     target="_blank"
