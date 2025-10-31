@@ -1,11 +1,12 @@
 import './globals.css';
 import { Analytics } from "@vercel/analytics/react";
 import Head from 'next/head';
+import ServiceWorkerRegister from './ServiceWorkerRegister'; // 👈 ajout du composant client
 
 export const metadata = {
   title: "Calendrier de Jade - Dodge City",
   description: "Le calendrier des matchs de Jade.",
-   manifest: "/manifest.json",
+  manifest: "/manifest.json",
   appleWebApp: {
     title: "Jade Schedule",
   },
@@ -42,7 +43,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="fr">
       <Head>
         <link rel="icon" href="/favicon.ico" />
-         
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
         <link rel="manifest" href="/manifest.json" />
         <meta name="apple-mobile-web-app-title" content="Jade Schedule" />
@@ -50,8 +50,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </Head>
 
       <body className="min-h-screen bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900 dark:to-purple-800 text-gray-900 dark:text-white">
+        {/* 🔴 Bandeau titre */}
         <header className="bg-gradient-to-r from-purple-800 via-purple-700 to-purple-600 text-white p-6 md:p-8 text-3xl sm:text-3xl font-bold text-center shadow-lg tracking-wide">
-          
           {/* Mobile */}
           <span className="sm:hidden">🏀 JADE SCHEDULE</span>
 
@@ -62,8 +62,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <span className="hidden lg:inline">🏀 CALENDRIER DE JADE - DODGE CITY</span>
         </header>
 
+        {/* Contenu principal */}
         <main className="container mx-auto mt-6 px-4">{children}</main>
+
+        {/* Analytics */}
         <Analytics />
+
+        {/* ✅ Enregistrement du Service Worker */}
+        <ServiceWorkerRegister />
       </body>
     </html>
   );
