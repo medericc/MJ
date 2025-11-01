@@ -61,7 +61,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {/* Ordinateur */}
           <span className="hidden lg:inline">🏀 CALENDRIER DE JADE - DODGE CITY</span>
         </header>
-
+ 
         {/* Contenu principal */}
         <main className="container mx-auto mt-6 px-4">{children}</main>
 
