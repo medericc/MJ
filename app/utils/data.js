@@ -16,7 +16,7 @@ export const matches = [
   {
     "match.opponent": "North Platte",
     "dayLabel": "11/12/2025",
-    "hourLabel": "",
+    "hourLabel": "18:00",
     "match.opponentLogo": "/6.webp",
     "match.link": "https://goconqs.com/sports/2018/8/17/live-video.aspx"
   },
