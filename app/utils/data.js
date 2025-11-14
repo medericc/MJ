@@ -25,14 +25,14 @@ export const matches = [
     "dayLabel": "11/14/2025",
     "hourLabel": "18:30",
     "match.opponentLogo": "/7.webp",
-    "match.link": ""
+    "match.link": "https://www.youtube.com/watch?v=9QXmJV_OwB8"
   },
   {
     "match.opponent": "Laramie",
     "dayLabel": "11/15/2025",
     "hourLabel": "14:00",
     "match.opponentLogo": "/8.webp",
-    "match.link": ""
+    "match.link": "https://www.youtube.com/watch?v=lS4cjhjNxbQ"
   },
   {
     "match.opponent": "Barton",
