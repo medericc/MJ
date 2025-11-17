@@ -39,7 +39,7 @@ export const matches = [
     "dayLabel": "11/19/2025",
     "hourLabel": "17:30",
     "match.opponentLogo": "/21.webp",
-    "match.link": ""
+    "match.link": "https://kjcccsports.net/bartonsports/"
   },
   {
     "match.opponent": "Cowley",
