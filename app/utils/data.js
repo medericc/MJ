@@ -92,7 +92,7 @@ export const matches = [
   },
   {
     "match.opponent": "Garden",
-    "dayLabel": "1/8/2026",
+    "dayLabel": "1/7/2026",
     "hourLabel": "17:30",
     "match.opponentLogo": "/17.webp",
     "match.link": ""
@@ -120,7 +120,7 @@ export const matches = [
   },
   {
     "match.opponent": "Barton",
-    "dayLabel": "1/22/2026",
+    "dayLabel": "1/21/2026",
     "hourLabel": "17:30",
     "match.opponentLogo": "/21.webp",
     "match.link": ""
@@ -141,7 +141,7 @@ export const matches = [
   },
   {
     "match.opponent": "Colby",
-    "dayLabel": "2/5/2026",
+    "dayLabel": "2/4/2026",
     "hourLabel": "17:30",
     "match.opponentLogo": "/12.webp",
     "match.link": ""
@@ -155,7 +155,7 @@ export const matches = [
   },
   {
     "match.opponent": "Hutchinson",
-    "dayLabel": "2/12/2026",
+    "dayLabel": "2/11/2026",
     "hourLabel": "17:30",
     "match.opponentLogo": "/14.webp",
     "match.link": ""
@@ -169,7 +169,7 @@ export const matches = [
   },
   {
     "match.opponent": "FH Tech NW",
-    "dayLabel": "2/19/2026",
+    "dayLabel": "2/18/2026",
     "hourLabel": "18:30",
     "match.opponentLogo": "/16.webp",
     "match.link": ""
@@ -183,7 +183,7 @@ export const matches = [
   },
   {
     "match.opponent": "Butler",
-    "dayLabel": "2/26/2026",
+    "dayLabel": "2/25/2026",
     "hourLabel": "17:30",
     "match.opponentLogo": "/18.webp",
     "match.link": ""
@@ -197,7 +197,7 @@ export const matches = [
   },
   {
     "match.opponent": "Seward",
-    "dayLabel": "3/5/2026",
+    "dayLabel": "3/4/2026",
     "hourLabel": "18:00",
     "match.opponentLogo": "/20.webp",
     "match.link": ""
