@@ -36,7 +36,7 @@ export const matches = [
   },
   {
     "match.opponent": "Barton",
-    "dayLabel": "11/20/2025",
+    "dayLabel": "11/19/2025",
     "hourLabel": "17:30",
     "match.opponentLogo": "/21.webp",
     "match.link": ""
@@ -57,7 +57,7 @@ export const matches = [
   },
   {
     "match.opponent": "Colby",
-    "dayLabel": "12/4/2025",
+    "dayLabel": "12/3/2025",
     "hourLabel": "17:30",
     "match.opponentLogo": "/12.webp",
     "match.link": ""
