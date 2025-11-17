@@ -71,7 +71,7 @@ export const matches = [
   },
   {
     "match.opponent": "Hutchinson",
-    "dayLabel": "12/11/2025",
+    "dayLabel": "12/10/2025",
     "hourLabel": "17:30",
     "match.opponentLogo": "/14.webp",
     "match.link": ""
