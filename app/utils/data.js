@@ -53,7 +53,7 @@ export const matches = [
     "dayLabel": "11/29/2025",
     "hourLabel": "14:00",
     "match.opponentLogo": "/11.webp",
-    "match.link": ""
+    "match.link": "https://cloudtbirds.com/sports/2021/2/24/t-bird-sports-network.aspx"
   },
   {
     "match.opponent": "Colby",
