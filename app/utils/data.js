@@ -60,7 +60,7 @@ export const matches = [
     "dayLabel": "12/3/2025",
     "hourLabel": "17:30",
     "match.opponentLogo": "/12.webp",
-    "match.link": ""
+    "match.link": "https://goconqs.com/sports/2018/8/17/live-video.aspx"
   },
   {
     "match.opponent": "Coffeyville",
