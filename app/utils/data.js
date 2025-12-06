@@ -67,7 +67,7 @@ export const matches = [
     "dayLabel": "12/6/2025",
     "hourLabel": "14:00",
     "match.opponentLogo": "/13.webp",
-    "match.link": ""
+    "match.link": "https://www.youtube.com/channel/UC6T5olnoVedbKej3mrda07Q/featured"
   },
   {
     "match.opponent": "Hutchinson",
