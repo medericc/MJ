@@ -102,7 +102,7 @@ export const matches = [
     "dayLabel": "1/10/2026",
     "hourLabel": "14:00",
     "match.opponentLogo": "/18.webp",
-    "match.link": ""
+    "match.link": "https://www.butlergrizzlies.com/WatchLive/index"
   },
   {
     "match.opponent": "Independence",
