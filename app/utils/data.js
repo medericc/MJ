@@ -123,7 +123,7 @@ export const matches = [
     "dayLabel": "1/21/2026",
     "hourLabel": "17:30",
     "match.opponentLogo": "/21.webp",
-    "match.link": ""
+    "match.link": "https://goconqs.com/sports/2018/8/17/live-video.aspx"
   },
   {
     "match.opponent": "Cowley",
