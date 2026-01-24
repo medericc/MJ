@@ -130,7 +130,7 @@ export const matches = [
     "dayLabel": "1/24/2026",
     "hourLabel": "14:00",
     "match.opponentLogo": "/10.webp",
-    "match.link": ""
+    "match.link": "https://goconqs.com/sports/2018/8/17/live-video.aspx"
   },
   {
     "match.opponent": "Cloud",
