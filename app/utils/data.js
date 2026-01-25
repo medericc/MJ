@@ -127,8 +127,8 @@ export const matches = [
   },
   {
     "match.opponent": "Cowley",
-    "dayLabel": "1/24/2026",
-    "hourLabel": "14:00",
+    "dayLabel": "1/26/2026",
+    "hourLabel": "17:30",
     "match.opponentLogo": "/10.webp",
     "match.link": "https://goconqs.com/sports/2018/8/17/live-video.aspx"
   },
