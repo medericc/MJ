@@ -137,7 +137,7 @@ export const matches = [
     "dayLabel": "1/31/2026",
     "hourLabel": "13:00",
     "match.opponentLogo": "/11.webp",
-    "match.link": ""
+    "match.link": "https://goconqs.com/sports/2018/8/17/live-video.aspx"
   },
   {
     "match.opponent": "Colby",
