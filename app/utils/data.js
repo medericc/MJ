@@ -144,7 +144,7 @@ export const matches = [
     "dayLabel": "2/4/2026",
     "hourLabel": "17:30",
     "match.opponentLogo": "/12.webp",
-    "match.link": ""
+    "match.link": "https://www.colbytrojans.com/livestreaming"
   },
   {
     "match.opponent": "Coffeyville",
