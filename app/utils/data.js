@@ -179,7 +179,7 @@ export const matches = [
     "dayLabel": "2/21/2026",
     "hourLabel": "14:00",
     "match.opponentLogo": "/17.webp",
-    "match.link": ""
+    "match.link": "https://goconqs.com/sports/2018/8/17/live-video.aspx"
   },
   {
     "match.opponent": "Butler",
