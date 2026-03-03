@@ -200,6 +200,6 @@ export const matches = [
     "dayLabel": "3/4/2026",
     "hourLabel": "18:00",
     "match.opponentLogo": "/20.webp",
-    "match.link": ""
+    "match.link": "https://goconqs.com/sports/2018/8/17/live-video.aspx"
   },
 ];
