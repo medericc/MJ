@@ -19,7 +19,7 @@ type Match = {
 
 const translations = {
   fr: {
-    addCalendarTitle: "Hourni tout lass partides à lou bòstẹ calandriè ?",
+    addCalendarTitle: "Hourni tout las partides à lou bòstẹ calandriè ?",
     appleOutlook: "📅 Apple / Outlook (.ics)",
     googleCalendar: "📆 Google Calendar",
     cancel: "Tourna",
