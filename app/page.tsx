@@ -101,7 +101,10 @@ export default function PhoenixSchedulePage() {
   const [showiOSInstructions, setShowiOSInstructions] = useState(false);
   const [userZone, setUserZone] = useState("Europe/Paris");
   const [userCountryCode, setUserCountryCode] = useState("fr");
-const [showLocalTimes, setShowLocalTimes] = useState<{ [key: string]: boolean }>(() => {
+
+ const [showOccitanDay, setShowOccitanDay] = useState(true);
+
+  const [showLocalTimes, setShowLocalTimes] = useState<{ [key: string]: boolean }>(() => {
   const initial: { [key: string]: boolean } = {};
   
   // Par défaut, on affiche les heures en local (pas en France)
@@ -234,7 +237,7 @@ const [isNoLinkModalOpen, setIsNoLinkModalOpen] = useState(false);
   const locale = "fr-FR";
           const use12HourFormat = ['en-US', 'en-GB'].includes(locale);
 
-         const rawDay = new Date(match.date).toLocaleDateString(locale, {
+       const rawDay = new Date(match.date).toLocaleDateString(locale, {
   weekday: "long",
   day: "numeric",
   month: "long",
@@ -243,7 +246,11 @@ const [isNoLinkModalOpen, setIsNoLinkModalOpen] = useState(false);
 
 const [weekday, ...rest] = rawDay.split(" ");
 
-const dayLabel = `${dayMapping[weekday] || weekday} ${rest.join(" ")}`;
+const occitanDay = dayMapping[weekday] || weekday;
+
+const dayLabel = showOccitanDay
+  ? `${occitanDay} ${rest.join(" ")}`
+  : rawDay;
 
           const hourLabel = match.hasValidTime
             ? new Date(match.date).toLocaleTimeString(locale, {
@@ -258,11 +265,14 @@ const dayLabel = `${dayMapping[weekday] || weekday} ${rest.join(" ")}`;
           return (
             <div key={match.id} className="group">
               <Card className="bg-white/90 backdrop-blur-sm border-2 border-purple-200/50 shadow-xl hover:shadow-2xl transition-all duration-300 rounded-2xl overflow-hidden hover:border-purple-300">
-                <CardHeader className="bg-gradient-to-r from-purple-800 to-purple-700 text-white p-4 text-center">
-                  <p className="text-lg font-bold tracking-wider drop-shadow-sm">
-                    {dayLabel}
-                  </p>
-                </CardHeader>
+             <CardHeader
+  onClick={() => setShowOccitanDay(prev => !prev)}
+  className="bg-gradient-to-r from-purple-800 to-purple-700 text-white p-4 text-center cursor-pointer"
+>
+  <p className="text-lg font-bold tracking-wider drop-shadow-sm">
+    {dayLabel}
+  </p>
+</CardHeader>
                 
                 <CardContent className="p-5">
                   <div className="flex items-center justify-between">
