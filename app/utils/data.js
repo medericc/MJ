@@ -202,4 +202,25 @@ export const matches = [
     "match.opponentLogo": "/20.webp",
     "match.link": "https://goconqs.com/sports/2018/8/17/live-video.aspx"
   },
+   {
+    "match.opponent": "Quar de Finale",
+    "dayLabel": "3/10/2026",
+    "hourLabel": "17:30",
+    "match.opponentLogo": "/finale.webp",
+    "match.link": "https://goconqs.com/sports/2018/8/17/live-video.aspx"
+  },
+   {
+    "match.opponent": "Miéy-Finale",
+    "dayLabel": "3/13/2026",
+    "hourLabel": "17:30",
+    "match.opponentLogo": "/finale.webp",
+    "match.link": ""
+  },
+   {
+    "match.opponent": "Finale",
+    "dayLabel": "3/14/2026",
+    "hourLabel": "15:00",
+    "match.opponentLogo": "/finale.webp",
+    "match.link": ""
+  },
 ];
