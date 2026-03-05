@@ -213,7 +213,7 @@ const [isNoLinkModalOpen, setIsNoLinkModalOpen] = useState(false);
           </div>
           <div >
             <h1 className="text-2xl font-bold bg-gradient-to-r from-purple-800 to-purple-700 bg-clip-text text-transparent">
-              SAISON 2025-2026
+              SASOÛ 2025-2026
             </h1>
             <p className="text-purple-800 text-sm font-medium">Dodge City Community</p>
           </div>
