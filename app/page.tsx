@@ -19,10 +19,10 @@ type Match = {
 
 const translations = {
   fr: {
-    addCalendarTitle: "Ajouter tous les matchs à votre calendrier ?",
+    addCalendarTitle: "Hourni tout lass partides à lou bòstẹ calandriè ?",
     appleOutlook: "📅 Apple / Outlook (.ics)",
     googleCalendar: "📆 Google Calendar",
-    cancel: "Annuler",
+    cancel: "Tourna",
     googleInstructions: [
       "✅ Le fichier a été téléchargé !",
       "Voici comment l'importer dans Google Calendar :",
@@ -42,7 +42,7 @@ const translations = {
       "4. Choisissez Ajouter à Calendrier si proposé",
       "📅 Tous les matchs de Jade sont maintenant ajoutés à votre calendrier !",
     ],
-    close: "Fermer",
+    close: "barra",
   }
 };
 
@@ -84,7 +84,15 @@ const parsed = rawMatches.map((match, index) => {
     hasValidTime: !isNaN(hour) && !isNaN(minute),
   };
 });
-
+const dayMapping: Record<string, string> = {
+  LUNDI: "DILHÛS",
+  MARDI: "DIMARS",
+  MERCREDI: "DIMÈRS",
+  JEUDI: "DIYAUS",
+  VENDREDI: "DIBÉS",
+  SAMEDI: "DISSÀTTẸ",
+  DIMANCHE: "DIMÉNDYẸ",
+};
 export default function PhoenixSchedulePage() {
   const [matches, setMatches] = useState<Match[]>([]);
   const [loading, setLoading] = useState(true);
@@ -226,12 +234,16 @@ const [isNoLinkModalOpen, setIsNoLinkModalOpen] = useState(false);
   const locale = "fr-FR";
           const use12HourFormat = ['en-US', 'en-GB'].includes(locale);
 
-          const dayLabel = new Date(match.date).toLocaleDateString(locale, {
-            weekday: 'long',
-            day: 'numeric',
-            month: 'long',
-            timeZone,
-          }).toUpperCase();
+         const rawDay = new Date(match.date).toLocaleDateString(locale, {
+  weekday: "long",
+  day: "numeric",
+  month: "long",
+  timeZone,
+}).toUpperCase();
+
+const [weekday, ...rest] = rawDay.split(" ");
+
+const dayLabel = `${dayMapping[weekday] || weekday} ${rest.join(" ")}`;
 
           const hourLabel = match.hasValidTime
             ? new Date(match.date).toLocaleTimeString(locale, {
@@ -305,7 +317,7 @@ src={`https://flagcdn.com/w40/${userCountryCode}.png`}
     className="w-full text-center py-3 text-white font-bold text-lg hover:bg-purple-800/90 transition-colors flex items-center justify-center gap-2"
   >
     <ExternalLink className="w-5 h-5" />
-    REGARDER LE MATCH
+    ESPIA LA PARTIDE
   </a>
 ) : (
   <button
@@ -313,7 +325,7 @@ src={`https://flagcdn.com/w40/${userCountryCode}.png`}
     className="w-full text-center py-3 text-white font-bold text-lg hover:bg-purple-800/90 transition-colors flex items-center justify-center gap-2"
   >
     <ExternalLink className="w-5 h-5" />
-    REGARDER LE MATCH
+    ESPIA LA PARTIDE
   </button>
 )}
 

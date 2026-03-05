@@ -56,10 +56,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <span className="sm:hidden">🏀 JADE SCHEDULE</span>
 
           {/* Tablette */}
-          <span className="hidden sm:inline lg:hidden">🏀 CALENDRIER DE JADE</span>
+          <span className="hidden sm:inline lg:hidden">🏀 CALANDRIÈ DE JADE</span>
 
           {/* Ordinateur */}
-          <span className="hidden lg:inline">🏀 CALENDRIER DE JADE - DODGE CITY</span>
+          <span className="hidden lg:inline">🏀 CALANDRIÈ DE JADE - DODGE CITY</span>
         </header>
  
         {/* Contenu principal */}
