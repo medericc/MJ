@@ -51,16 +51,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
       <body className="min-h-screen bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900 dark:to-purple-800 text-gray-900 dark:text-white">
         {/* 🔴 Bandeau titre */}
-        <header className="bg-gradient-to-r from-purple-800 via-purple-700 to-purple-600 text-white p-6 md:p-8 text-3xl sm:text-3xl font-bold text-center shadow-lg tracking-wide">
-          {/* Mobile */}
-          <span className="sm:hidden">🏀 JADE SCHEDULE</span>
-
-          {/* Tablette */}
-          <span className="hidden sm:inline lg:hidden">🏀 CALANDRIÈ DE JADE</span>
-
-          {/* Ordinateur */}
-          <span className="hidden lg:inline">🏀 CALANDRIÈ DE JADE - DODGE CITY</span>
-        </header>
+      
  
         {/* Contenu principal */}
         <main className="container mx-auto mt-6 px-4">{children}</main>
